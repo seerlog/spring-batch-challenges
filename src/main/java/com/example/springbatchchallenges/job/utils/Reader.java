@@ -3,6 +3,7 @@ package com.example.springbatchchallenges.job.utils;
 import com.example.springbatchchallenges.job.vo.RestaurantCsvVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.separator.DefaultRecordSeparatorPolicy;
@@ -15,24 +16,28 @@ import org.springframework.core.io.ClassPathResource;
 @RequiredArgsConstructor
 public class Reader {
     @Bean
-    public FlatFileItemReader<RestaurantCsvVO> csvReader() {
-        FlatFileItemReader<RestaurantCsvVO> flatFileItemReader = new FlatFileItemReader<>();
-        flatFileItemReader.setResource(new ClassPathResource("data.csv"));
-        flatFileItemReader.setLinesToSkip(1); // Skip the header
-        flatFileItemReader.setEncoding("EUC-KR");
-        flatFileItemReader.setRecordSeparatorPolicy(new DefaultRecordSeparatorPolicy());
-
-        DefaultLineMapper<RestaurantCsvVO> defaultLineMapper = new DefaultLineMapper<>();
+    public FlatFileItemReader<RestaurantCsvVO> csvReader() throws Exception {
         DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
-
         delimitedLineTokenizer.setNames(RestaurantCsvVO.getFieldNames().toArray(String[]::new));
-        defaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
+        delimitedLineTokenizer.setStrict(false);
 
         BeanWrapperFieldSetMapper<RestaurantCsvVO> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<>();
         beanWrapperFieldSetMapper.setTargetType(RestaurantCsvVO.class);
 
+        DefaultLineMapper<RestaurantCsvVO> defaultLineMapper = new DefaultLineMapper<>();
+        defaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
         defaultLineMapper.setFieldSetMapper(beanWrapperFieldSetMapper);
-        flatFileItemReader.setLineMapper(defaultLineMapper);
+
+        FlatFileItemReader<RestaurantCsvVO> flatFileItemReader = new FlatFileItemReaderBuilder<RestaurantCsvVO>()
+                .name("csvFileItemReader")
+                .encoding("EUC-KR")
+                .resource(new ClassPathResource("data.csv"))
+                .linesToSkip(1)
+//                .recordSeparatorPolicy(new DefaultRecordSeparatorPolicy())
+                .lineMapper(defaultLineMapper)
+                .build();
+
+        flatFileItemReader.afterPropertiesSet();
 
         return flatFileItemReader;
     }

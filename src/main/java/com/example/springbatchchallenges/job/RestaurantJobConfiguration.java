@@ -30,7 +30,7 @@ public class RestaurantJobConfiguration {
     }
 
     @Bean
-    public Step saveFromCsvToDB(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) {
+    public Step saveFromCsvToDB(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) throws Exception {
         return new StepBuilder("saveFromCsvToDB", jobRepository)
                 .<RestaurantCsvVO, RestaurantCsvVO>chunk(chunkSize, platformTransactionManager)
                 .reader(reader.csvReader())
