@@ -21,8 +21,14 @@ public class Writer implements ItemWriter<RestaurantCsvVO> {
     public void write(Chunk<? extends RestaurantCsvVO> chunk) {
         logger.info("Chunk size: {}", chunk.size());
         logger.info("Chunk: {}", chunk);
+        chunk.forEach(restaurantCsvVO -> {
+            logger.info("RestaurantCsvVO String encoding: {}", restaurantCsvVO);
+        });
 //        Chunk<Restaurant> restaurants = new Chunk<>();
-//        chunk.forEach(restaurant -> restaurants.add(restaurant));
+//        chunk.forEach(restaurantCsvVO -> {
+//            Restaurant shop = Restaurant.of(restaurantCsvVO);
+//            restaurants.add(shop);
+//        });
 //        restaurantRepository.saveAll(restaurants);
     }
 }
