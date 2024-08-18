@@ -1,11 +1,9 @@
 package com.example.springbatchchallenges.job;
 
-import com.example.springbatchchallenges.domain.restaurant.Restaurant;
 import com.example.springbatchchallenges.job.utils.Reader;
 import com.example.springbatchchallenges.job.utils.Writer;
+import com.example.springbatchchallenges.job.vo.RestaurantCsvVO;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -32,7 +30,7 @@ public class RestaurantJobConfiguration {
     @Bean
     public Step saveFromCsvToDB(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) {
         return new StepBuilder("saveFromCsvToDB", jobRepository)
-                .<Restaurant, Restaurant>chunk(chunkSize, platformTransactionManager)
+                .<RestaurantCsvVO, RestaurantCsvVO>chunk(chunkSize, platformTransactionManager)
                 .reader(reader.csvReader())
                 .writer(writer)
                 .build();

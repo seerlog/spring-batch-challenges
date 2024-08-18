@@ -6,11 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -163,13 +160,4 @@ public class Restaurant {
 
     @Column(name = "EMPTY", nullable = false)
     private String empty;
-
-    public static List<String> getFieldNames() {
-        Field[] declaredFields = Restaurant.class.getDeclaredFields();
-        List<String> result = new ArrayList<>();
-        for (Field declaredField : declaredFields) {
-            result.add(declaredField.getName());
-        }
-        return result;
-    }
 }
