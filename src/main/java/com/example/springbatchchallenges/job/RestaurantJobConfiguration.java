@@ -20,7 +20,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class RestaurantJobConfiguration {
     private final Reader reader;
     private final Writer writer;
-    private static final int chunkSize = 2;
+    private static final int chunkSize = 1000;
 
     @Bean
     public Job restaurantJob(JobRepository jobRepository, Step saveFromCsvToDB) {
@@ -35,7 +35,6 @@ public class RestaurantJobConfiguration {
                 .<RestaurantCsvVO, RestaurantCsvVO>chunk(chunkSize, platformTransactionManager)
                 .reader(reader.csvReader())
                 .writer(writer)
-                .allowStartIfComplete(true)
                 .build();
     }
 }

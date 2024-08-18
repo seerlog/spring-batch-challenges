@@ -22,7 +22,7 @@ public class Writer implements ItemWriter<RestaurantCsvVO> {
         logger.info("Chunk size: {}", chunk.size());
         logger.info("Chunk: {}", chunk);
         chunk.forEach(restaurantCsvVO -> {
-            logger.info("RestaurantCsvVO String encoding: {}", restaurantCsvVO);
+            logger.info("RestaurantCsvVO: {}", restaurantCsvVO);
         });
 //        Chunk<Restaurant> restaurants = new Chunk<>();
 //        chunk.forEach(restaurantCsvVO -> {
