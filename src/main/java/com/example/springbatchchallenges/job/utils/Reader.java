@@ -17,7 +17,7 @@ public class Reader {
     @Bean
     public FlatFileItemReader<RestaurantCsvVO> csvReader() {
         FlatFileItemReader<RestaurantCsvVO> flatFileItemReader = new FlatFileItemReader<>();
-        flatFileItemReader.setResource(new ClassPathResource("data.csv"));
+        flatFileItemReader.setResource(new ClassPathResource("data-small.csv"));
         flatFileItemReader.setLinesToSkip(1); // Skip the header
         flatFileItemReader.setEncoding("UTF-8");
         flatFileItemReader.setRecordSeparatorPolicy(new DefaultRecordSeparatorPolicy());
