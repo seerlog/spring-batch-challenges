@@ -1,5 +1,7 @@
 package com.example.springbatchchallenges.job;
 
+import com.example.springbatchchallenges.job.utils.CsvReader;
+import com.example.springbatchchallenges.job.utils.DbWriter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,17 +21,20 @@ public class RestaurantJobConfiguration {
     private final Logger logger = LoggerFactory.getLogger(RestaurantJobConfiguration.class);
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
+    private final CsvReader csvReader;
+    private final DbWriter dbWriter;
+    private static final int chunkSize = 1000;
 
     @Bean
-    public Job simpleJob() {
-        return new JobBuilder("simpleJob", jobRepository)
-                .start(step1())
+    public Job RestaurantJob() {
+        return new JobBuilder("RestaurantJob", jobRepository)
+                .start(readCsv())
                 .build();
     }
 
     @Bean
-    public Step step1() {
-        return new StepBuilder("step1", jobRepository)
+    public Step readCsv() {
+        return new StepBuilder("readCsv", jobRepository)
                 .tasklet(((contribution, chunkContext) -> {
                     logger.info("Hello, Spring Batch!");
                     return RepeatStatus.FINISHED;
