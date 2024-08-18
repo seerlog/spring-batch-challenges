@@ -6,8 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -66,7 +69,7 @@ public class Restaurant {
     private String locationPhone;
 
     @Column(name = "LOCATION_AREA", nullable = false)
-    private String locationArea;
+    private double locationArea;
 
     @Column(name = "LOCATION_ZIP_CODE", nullable = false)
     private String locationZipCode;
@@ -96,10 +99,10 @@ public class Restaurant {
     private String businessTypeName;
 
     @Column(name = "COORDINATE_X", nullable = false)
-    private String coordinateX;
+    private double coordinateX;
 
     @Column(name = "COORDINATE_Y", nullable = false)
-    private String coordinateY;
+    private double coordinateY;
 
     @Column(name = "SANITATION_BUSINESS_TYPE_NAME", nullable = false)
     private String sanitationBusinessTypeName;
@@ -115,6 +118,9 @@ public class Restaurant {
 
     @Column(name = "GRADE_TYPE_NAME", nullable = false)
     private String gradeTypeName;
+
+    @Column(name = "WATER_SUPPLY_TYPE", nullable = false)
+    private String waterSupplyType;
 
     @Column(name = "EMPLOYEE_TOTAL_COUNT", nullable = false)
     private int employeeTotalCount;
@@ -144,7 +150,7 @@ public class Restaurant {
     private String multiUseEstablishmentYn;
 
     @Column(name = "FACILITY_TOTAL_SIZE", nullable = false)
-    private String facilityTotalSize;
+    private double facilityTotalSize;
 
     @Column(name = "TRADITIONAL_ESTABLISHMENT_DESIGNATION_NUMBER", nullable = false)
     private String traditionalEstablishmentDesignationNumber;
@@ -154,4 +160,16 @@ public class Restaurant {
 
     @Column(name = "HOMEPAGE", nullable = false)
     private String homepage;
+
+    @Column(name = "EMPTY", nullable = false)
+    private String empty;
+
+    public static List<String> getFieldNames() {
+        Field[] declaredFields = Restaurant.class.getDeclaredFields();
+        List<String> result = new ArrayList<>();
+        for (Field declaredField : declaredFields) {
+            result.add(declaredField.getName());
+        }
+        return result;
+    }
 }

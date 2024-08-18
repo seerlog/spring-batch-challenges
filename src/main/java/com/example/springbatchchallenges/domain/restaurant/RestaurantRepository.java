@@ -1,6 +1,6 @@
 package com.example.springbatchchallenges.domain.restaurant;
 
-import org.hibernate.type.descriptor.converter.spi.JpaAttributeConverter;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RestaurantRepository extends JpaAttributeConverter<Restaurant, Long> {
+public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 }
