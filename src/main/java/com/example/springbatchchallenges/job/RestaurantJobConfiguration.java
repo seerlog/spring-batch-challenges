@@ -3,6 +3,7 @@ package com.example.springbatchchallenges.job;
 import com.example.springbatchchallenges.job.utils.Reader;
 import com.example.springbatchchallenges.job.utils.Writer;
 import com.example.springbatchchallenges.job.vo.RestaurantCsvVO;
+import com.example.springbatchchallenges.job.vo.RestaurantVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -20,7 +21,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class RestaurantJobConfiguration {
     private final Reader reader;
     private final Writer writer;
-    private static final int chunkSize = 1000;
+    private static final int chunkSize = 10000;
 
     @Bean
     public Job restaurantJob(JobRepository jobRepository, Step saveFromCsvToDB) {
@@ -32,7 +33,7 @@ public class RestaurantJobConfiguration {
     @Bean
     public Step saveFromCsvToDB(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) throws Exception {
         return new StepBuilder("saveFromCsvToDB", jobRepository)
-                .<RestaurantCsvVO, RestaurantCsvVO>chunk(chunkSize, platformTransactionManager)
+                .<RestaurantVO, RestaurantVO>chunk(chunkSize, platformTransactionManager)
                 .reader(reader.csvReader())
                 .writer(writer)
                 .build();

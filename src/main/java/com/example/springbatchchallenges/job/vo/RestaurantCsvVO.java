@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.batch.item.file.transform.FieldSet;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -70,5 +71,58 @@ public class RestaurantCsvVO {
             result.add(declaredField.getName());
         }
         return result;
+    }
+
+    public static RestaurantCsvVO of(FieldSet fieldSet) {
+        return RestaurantCsvVO.builder()
+                .no(fieldSet.readString("no"))
+                .openServiceName(fieldSet.readString("openServiceName"))
+                .openServiceId(fieldSet.readString("openServiceId"))
+                .openMunicipalityCode(fieldSet.readString("openMunicipalityCode"))
+                .controlNumber(fieldSet.readString("controlNumber"))
+                .licensingDate(fieldSet.readString("licensingDate"))
+                .licensingCancelDate(fieldSet.readString("licensingCancelDate"))
+                .businessStatusCode(fieldSet.readString("businessStatusCode"))
+                .businessStatusName(fieldSet.readString("businessStatusName"))
+                .businessDetailStatusCode(fieldSet.readString("businessDetailStatusCode"))
+                .businessDetailStatusName(fieldSet.readString("businessDetailStatusName"))
+                .closingDate(fieldSet.readString("closingDate"))
+                .suspensionStartDate(fieldSet.readString("suspensionStartDate"))
+                .suspensionEndDate(fieldSet.readString("suspensionEndDate"))
+                .reopeningDate(fieldSet.readString("reopeningDate"))
+                .locationPhone(fieldSet.readString("locationPhone"))
+                .locationArea(fieldSet.readString("locationArea"))
+                .locationZipCode(fieldSet.readString("locationZipCode"))
+                .locationFullAddress(fieldSet.readString("locationFullAddress"))
+                .streetFullAddress(fieldSet.readString("streetFullAddress"))
+                .streetZipCode(fieldSet.readString("streetZipCode"))
+                .businessLocationName(fieldSet.readString("businessLocationName"))
+                .lastModifiedDatetime(fieldSet.readString("lastModifiedDatetime"))
+                .dataRenewalType(fieldSet.readString("dataRenewalType"))
+                .dataRenewalDate(fieldSet.readString("dataRenewalDate"))
+                .businessTypeName(fieldSet.readString("businessTypeName"))
+                .coordinateX(fieldSet.readString("coordinateX"))
+                .coordinateY(fieldSet.readString("coordinateY"))
+                .sanitationBusinessTypeName(fieldSet.readString("sanitationBusinessTypeName"))
+                .maleWorkersCount(fieldSet.readString("maleWorkersCount"))
+                .femaleWorkersCount(fieldSet.readString("femaleWorkersCount"))
+                .businessNeighborhoodAreaName(fieldSet.readString("businessNeighborhoodAreaName"))
+                .gradeTypeName(fieldSet.readString("gradeTypeName"))
+                .waterSupplyType(fieldSet.readString("waterSupplyType"))
+                .employeeTotalCount(fieldSet.readString("employeeTotalCount"))
+                .headOfficeEmployeeCount(fieldSet.readString("headOfficeEmployeeCount"))
+                .factoryOfficeEmployeeCount(fieldSet.readString("factoryOfficeEmployeeCount"))
+                .factorySalesEmployeeCount(fieldSet.readString("factorySalesEmployeeCount"))
+                .factoryProduceEmployeeCount(fieldSet.readString("factoryProduceEmployeeCount"))
+                .buildingOwnershipType(fieldSet.readString("buildingOwnershipType"))
+                .guaranteeAmount(fieldSet.readString("guaranteeAmount"))
+                .monthlyRentAmount(fieldSet.readString("monthlyRentAmount"))
+                .multiUseEstablishmentYn(fieldSet.readString("multiUseEstablishmentYn"))
+                .facilityTotalSize(fieldSet.readString("facilityTotalSize"))
+                .traditionalEstablishmentDesignationNumber(fieldSet.readString("traditionalEstablishmentDesignationNumber"))
+                .traditionalEstablishmentMainFood(fieldSet.readString("traditionalEstablishmentMainFood"))
+                .homepage(fieldSet.readString("homepage"))
+                .empty(fieldSet.readString("empty"))
+                .build();
     }
 }

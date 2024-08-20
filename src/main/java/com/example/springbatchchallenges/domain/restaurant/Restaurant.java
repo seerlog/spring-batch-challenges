@@ -6,9 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -21,170 +23,211 @@ public class Restaurant {
     @Column(name = "NO", nullable = false)
     private Long no;
 
-    @Column(name = "OPEN_SERVICE_NAME", nullable = false)
+    @Column(name = "OPEN_SERVICE_NAME")
     private String openServiceName;
 
-    @Column(name = "OPEN_SERVICE_ID", nullable = false)
+    @Column(name = "OPEN_SERVICE_ID")
     private String openServiceId;
 
-    @Column(name = "OPEN_MUNICIPALITY_CODE", nullable = false)
+    @Column(name = "OPEN_MUNICIPALITY_CODE")
     private String openMunicipalityCode;
 
-    @Column(name = "CONTROL_NUMBER", nullable = false)
+    @Column(name = "CONTROL_NUMBER")
     private String controlNumber;
 
-    @Column(name = "LICENSING_DATE", nullable = false)
+    @Column(name = "LICENSING_DATE")
     private LocalDate licensingDate;
 
-    @Column(name = "LICENSING_CANCEL_DATE", nullable = false)
+    @Column(name = "LICENSING_CANCEL_DATE")
     private LocalDate licensingCancelDate;
 
-    @Column(name = "BUSINESS_STATUS_CODE", nullable = false)
+    @Column(name = "BUSINESS_STATUS_CODE")
     private String businessStatusCode;
 
-    @Column(name = "BUSINESS_STATUS_NAME", nullable = false)
+    @Column(name = "BUSINESS_STATUS_NAME")
     private String businessStatusName;
 
-    @Column(name = "BUSINESS_DETAIL_STATUS_CODE", nullable = false)
+    @Column(name = "BUSINESS_DETAIL_STATUS_CODE")
     private String businessDetailStatusCode;
 
-    @Column(name = "BUSINESS_DETAIL_STATUS_NAME", nullable = false)
+    @Column(name = "BUSINESS_DETAIL_STATUS_NAME")
     private String businessDetailStatusName;
 
-    @Column(name = "CLOSING_DATE", nullable = false)
+    @Column(name = "CLOSING_DATE")
     private LocalDate closingDate;
 
-    @Column(name = "SUSPENSION_START_DATE", nullable = false)
+    @Column(name = "SUSPENSION_START_DATE")
     private LocalDate suspensionStartDate;
 
-    @Column(name = "SUSPENSION_END_DATE", nullable = false)
+    @Column(name = "SUSPENSION_END_DATE")
     private LocalDate suspensionEndDate;
 
-    @Column(name = "REOPENING_DATE", nullable = false)
+    @Column(name = "REOPENING_DATE")
     private LocalDate reopeningDate;
 
-    @Column(name = "LOCATION_PHONE", nullable = false)
+    @Column(name = "LOCATION_PHONE")
     private String locationPhone;
 
-    @Column(name = "LOCATION_AREA", nullable = false)
+    @Column(name = "LOCATION_AREA")
     private double locationArea;
 
-    @Column(name = "LOCATION_ZIP_CODE", nullable = false)
+    @Column(name = "LOCATION_ZIP_CODE")
     private String locationZipCode;
 
-    @Column(name = "LOCATION_FULL_ADDRESS", nullable = false)
+    @Column(name = "LOCATION_FULL_ADDRESS")
     private String locationFullAddress;
 
-    @Column(name = "STREET_FULL_ADDRESS", nullable = false)
+    @Column(name = "STREET_FULL_ADDRESS")
     private String streetFullAddress;
 
-    @Column(name = "STREET_ZIP_CODE", nullable = false)
+    @Column(name = "STREET_ZIP_CODE")
     private String streetZipCode;
 
-    @Column(name = "BUSINESS_LOCATION_NAME", nullable = false)
+    @Column(name = "BUSINESS_LOCATION_NAME")
     private String businessLocationName;
 
-    @Column(name = "LAST_MODIFIED_DATETIME", nullable = false)
+    @Column(name = "LAST_MODIFIED_DATETIME")
     private LocalDateTime lastModifiedDatetime;
 
-    @Column(name = "DATA_RENEWAL_TYPE", nullable = false)
+    @Column(name = "DATA_RENEWAL_TYPE")
     private String dataRenewalType;
 
-    @Column(name = "DATA_RENEWAL_DATE", nullable = false)
+    @Column(name = "DATA_RENEWAL_DATE")
     private LocalDateTime dataRenewalDate;
 
-    @Column(name = "BUSINESS_TYPE_NAME", nullable = false)
+    @Column(name = "BUSINESS_TYPE_NAME")
     private String businessTypeName;
 
-    @Column(name = "COORDINATE_X", nullable = false)
+    @Column(name = "COORDINATE_X")
     private double coordinateX;
 
-    @Column(name = "COORDINATE_Y", nullable = false)
+    @Column(name = "COORDINATE_Y")
     private double coordinateY;
 
-    @Column(name = "SANITATION_BUSINESS_TYPE_NAME", nullable = false)
+    @Column(name = "SANITATION_BUSINESS_TYPE_NAME")
     private String sanitationBusinessTypeName;
 
-    @Column(name = "MALE_WORKERS_COUNT", nullable = false)
+    @Column(name = "MALE_WORKERS_COUNT")
     private int maleWorkersCount;
 
-    @Column(name = "FEMALE_WORKERS_COUNT", nullable = false)
+    @Column(name = "FEMALE_WORKERS_COUNT")
     private int femaleWorkersCount;
 
-    @Column(name = "BUSINESS_NEIGHBORHOOD_AREA_NAME", nullable = false)
+    @Column(name = "BUSINESS_NEIGHBORHOOD_AREA_NAME")
     private String businessNeighborhoodAreaName;
 
-    @Column(name = "GRADE_TYPE_NAME", nullable = false)
+    @Column(name = "GRADE_TYPE_NAME")
     private String gradeTypeName;
 
-    @Column(name = "WATER_SUPPLY_TYPE", nullable = false)
+    @Column(name = "WATER_SUPPLY_TYPE")
     private String waterSupplyType;
 
-    @Column(name = "EMPLOYEE_TOTAL_COUNT", nullable = false)
+    @Column(name = "EMPLOYEE_TOTAL_COUNT")
     private int employeeTotalCount;
 
-    @Column(name = "HEAD_OFFICE_EMPLOYEE_COUNT", nullable = false)
+    @Column(name = "HEAD_OFFICE_EMPLOYEE_COUNT")
     private int headOfficeEmployeeCount;
 
-    @Column(name = "FACTORY_OFFICE_EMPLOYEE_COUNT", nullable = false)
+    @Column(name = "FACTORY_OFFICE_EMPLOYEE_COUNT")
     private int factoryOfficeEmployeeCount;
 
-    @Column(name = "FACTORY_SALES_EMPLOYEE_COUNT", nullable = false)
+    @Column(name = "FACTORY_SALES_EMPLOYEE_COUNT")
     private int factorySalesEmployeeCount;
 
-    @Column(name = "FACTORY_PRODUCE_EMPLOYEE_COUNT", nullable = false)
+    @Column(name = "FACTORY_PRODUCE_EMPLOYEE_COUNT")
     private int factoryProduceEmployeeCount;
 
-    @Column(name = "BUILDING_OWNERSHIP_TYPE", nullable = false)
+    @Column(name = "BUILDING_OWNERSHIP_TYPE")
     private String buildingOwnershipType;
 
-    @Column(name = "GUARANTEE_AMOUNT", nullable = false)
+    @Column(name = "GUARANTEE_AMOUNT")
     private int guaranteeAmount;
 
-    @Column(name = "MONTHLY_RENT_AMOUNT", nullable = false)
+    @Column(name = "MONTHLY_RENT_AMOUNT")
     private int monthlyRentAmount;
 
-    @Column(name = "MULTI_USE_ESTABLISHMENT_YN", nullable = false)
+    @Column(name = "MULTI_USE_ESTABLISHMENT_YN")
     private String multiUseEstablishmentYn;
 
-    @Column(name = "FACILITY_TOTAL_SIZE", nullable = false)
+    @Column(name = "FACILITY_TOTAL_SIZE")
     private double facilityTotalSize;
 
-    @Column(name = "TRADITIONAL_ESTABLISHMENT_DESIGNATION_NUMBER", nullable = false)
+    @Column(name = "TRADITIONAL_ESTABLISHMENT_DESIGNATION_NUMBER")
     private String traditionalEstablishmentDesignationNumber;
 
-    @Column(name = "TRADITIONAL_ESTABLISHMENT_MAIN_FOOD", nullable = false)
+    @Column(name = "TRADITIONAL_ESTABLISHMENT_MAIN_FOOD")
     private String traditionalEstablishmentMainFood;
 
-    @Column(name = "HOMEPAGE", nullable = false)
+    @Column(name = "HOMEPAGE")
     private String homepage;
 
-    @Column(name = "EMPTY", nullable = false)
-    private String empty;
-
     public static Restaurant of(RestaurantCsvVO restaurantCsvVO) {
-        return new Restaurant(Long.valueOf(restaurantCsvVO.getNo()), restaurantCsvVO.getOpenServiceName(), restaurantCsvVO.getOpenServiceId(),
-                restaurantCsvVO.getOpenMunicipalityCode(), restaurantCsvVO.getControlNumber(),
-                LocalDate.parse(restaurantCsvVO.getLicensingDate()), LocalDate.parse(restaurantCsvVO.getLicensingCancelDate()),
-                restaurantCsvVO.getBusinessStatusCode(), restaurantCsvVO.getBusinessStatusName(),
-                restaurantCsvVO.getBusinessDetailStatusCode(), restaurantCsvVO.getBusinessDetailStatusName(),
-                LocalDate.parse(restaurantCsvVO.getClosingDate()), LocalDate.parse(restaurantCsvVO.getSuspensionStartDate()),
-                LocalDate.parse(restaurantCsvVO.getSuspensionEndDate()), LocalDate.parse(restaurantCsvVO.getReopeningDate()),
-                restaurantCsvVO.getLocationPhone(), Double.parseDouble(restaurantCsvVO.getLocationArea()),
-                restaurantCsvVO.getLocationZipCode(), restaurantCsvVO.getLocationFullAddress(),
-                restaurantCsvVO.getStreetFullAddress(), restaurantCsvVO.getStreetZipCode(),
-                restaurantCsvVO.getBusinessLocationName(), LocalDateTime.parse(restaurantCsvVO.getLastModifiedDatetime()),
-                restaurantCsvVO.getDataRenewalType(), LocalDateTime.parse(restaurantCsvVO.getDataRenewalDate()),
-                restaurantCsvVO.getBusinessTypeName(), Double.parseDouble(restaurantCsvVO.getCoordinateX()),
-                Double.parseDouble(restaurantCsvVO.getCoordinateY()), restaurantCsvVO.getSanitationBusinessTypeName(),
-                Integer.parseInt(restaurantCsvVO.getMaleWorkersCount()), Integer.parseInt(restaurantCsvVO.getFemaleWorkersCount()),
-                restaurantCsvVO.getBusinessNeighborhoodAreaName(), restaurantCsvVO.getGradeTypeName(),
-                restaurantCsvVO.getWaterSupplyType(), Integer.parseInt(restaurantCsvVO.getEmployeeTotalCount()),
-                Integer.parseInt(restaurantCsvVO.getHeadOfficeEmployeeCount()), Integer.parseInt(restaurantCsvVO.getFactoryOfficeEmployeeCount()),
-                Integer.parseInt(restaurantCsvVO.getFactorySalesEmployeeCount()), Integer.parseInt(restaurantCsvVO.getFactoryProduceEmployeeCount()),
-                restaurantCsvVO.getBuildingOwnershipType(), Integer.parseInt(restaurantCsvVO.getGuaranteeAmount()),
-                Integer.parseInt(restaurantCsvVO.getMonthlyRentAmount()), restaurantCsvVO.getMultiUseEstablishmentYn(),
-                Double.parseDouble(restaurantCsvVO.getFacilityTotalSize()), restaurantCsvVO.getTraditionalEstablishmentDesignationNumber(),
-                restaurantCsvVO.getTraditionalEstablishmentMainFood(), restaurantCsvVO.getHomepage(), restaurantCsvVO.getEmpty());
+        if(ObjectUtils.isEmpty(restaurantCsvVO.getNo())) {
+            return new Restaurant();
+        }
+        return new Restaurant(Long.valueOf(restaurantCsvVO.getNo())
+                , restaurantCsvVO.getOpenServiceName()
+                , restaurantCsvVO.getOpenServiceId()
+                , restaurantCsvVO.getOpenMunicipalityCode()
+                , restaurantCsvVO.getControlNumber()
+                , parseDate(restaurantCsvVO.getLicensingDate())
+                , parseDate(restaurantCsvVO.getLicensingCancelDate())
+                , restaurantCsvVO.getBusinessStatusCode()
+                , restaurantCsvVO.getBusinessStatusName()
+                , restaurantCsvVO.getBusinessDetailStatusCode()
+                , restaurantCsvVO.getBusinessDetailStatusName()
+                , parseDate(restaurantCsvVO.getClosingDate())
+                , parseDate(restaurantCsvVO.getSuspensionStartDate())
+                , parseDate(restaurantCsvVO.getSuspensionEndDate())
+                , parseDate(restaurantCsvVO.getReopeningDate())
+                , restaurantCsvVO.getLocationPhone()
+                , parseDouble(restaurantCsvVO.getLocationArea())
+                , restaurantCsvVO.getLocationZipCode()
+                , restaurantCsvVO.getLocationFullAddress()
+                , restaurantCsvVO.getStreetFullAddress()
+                , restaurantCsvVO.getStreetZipCode()
+                , restaurantCsvVO.getBusinessLocationName()
+                , parseDateTime(restaurantCsvVO.getLastModifiedDatetime())
+                , restaurantCsvVO.getDataRenewalType()
+                , parseDateTime(restaurantCsvVO.getDataRenewalDate())
+                , restaurantCsvVO.getBusinessTypeName()
+                , parseDouble(restaurantCsvVO.getCoordinateX())
+                , parseDouble(restaurantCsvVO.getCoordinateY())
+                , restaurantCsvVO.getSanitationBusinessTypeName()
+                , parseInt(restaurantCsvVO.getMaleWorkersCount())
+                , parseInt(restaurantCsvVO.getFemaleWorkersCount())
+                , restaurantCsvVO.getBusinessNeighborhoodAreaName()
+                , restaurantCsvVO.getGradeTypeName()
+                , restaurantCsvVO.getWaterSupplyType()
+                , parseInt(restaurantCsvVO.getEmployeeTotalCount())
+                , parseInt(restaurantCsvVO.getHeadOfficeEmployeeCount())
+                , parseInt(restaurantCsvVO.getFactoryOfficeEmployeeCount())
+                , parseInt(restaurantCsvVO.getFactorySalesEmployeeCount())
+                , parseInt(restaurantCsvVO.getFactoryProduceEmployeeCount())
+                , restaurantCsvVO.getBuildingOwnershipType()
+                , parseInt(restaurantCsvVO.getGuaranteeAmount())
+                , parseInt(restaurantCsvVO.getMonthlyRentAmount())
+                , restaurantCsvVO.getMultiUseEstablishmentYn()
+                , parseDouble(restaurantCsvVO.getFacilityTotalSize())
+                , restaurantCsvVO.getTraditionalEstablishmentDesignationNumber()
+                , restaurantCsvVO.getTraditionalEstablishmentMainFood()
+                , restaurantCsvVO.getHomepage());
+    }
+
+    private static LocalDate parseDate(String date) {
+        return ObjectUtils.isEmpty(date) ? null : LocalDate.parse(date);
+    }
+
+    private static LocalDateTime parseDateTime(String dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return ObjectUtils.isEmpty(dateTime) ? null : LocalDateTime.parse(dateTime, formatter);
+    }
+
+    private static Integer parseInt(String value) {
+        return ObjectUtils.isEmpty(value) ? 0 : Integer.parseInt(value);
+    }
+
+    private static Double parseDouble(String value) {
+        return ObjectUtils.isEmpty(value) ? 0 : Double.parseDouble(value);
     }
 }
