@@ -1,6 +1,7 @@
 package com.example.springbatchchallenges.domain.restaurant;
 
 import com.example.springbatchchallenges.job.vo.RestaurantCsvVO;
+import com.example.springbatchchallenges.utils.Util;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -170,64 +171,48 @@ public class Restaurant {
                 , restaurantCsvVO.getOpenServiceId()
                 , restaurantCsvVO.getOpenMunicipalityCode()
                 , restaurantCsvVO.getControlNumber()
-                , parseDate(restaurantCsvVO.getLicensingDate())
-                , parseDate(restaurantCsvVO.getLicensingCancelDate())
+                , Util.parseDate(restaurantCsvVO.getLicensingDate())
+                , Util.parseDate(restaurantCsvVO.getLicensingCancelDate())
                 , restaurantCsvVO.getBusinessStatusCode()
                 , restaurantCsvVO.getBusinessStatusName()
                 , restaurantCsvVO.getBusinessDetailStatusCode()
                 , restaurantCsvVO.getBusinessDetailStatusName()
-                , parseDate(restaurantCsvVO.getClosingDate())
-                , parseDate(restaurantCsvVO.getSuspensionStartDate())
-                , parseDate(restaurantCsvVO.getSuspensionEndDate())
-                , parseDate(restaurantCsvVO.getReopeningDate())
+                , Util.parseDate(restaurantCsvVO.getClosingDate())
+                , Util.parseDate(restaurantCsvVO.getSuspensionStartDate())
+                , Util.parseDate(restaurantCsvVO.getSuspensionEndDate())
+                , Util.parseDate(restaurantCsvVO.getReopeningDate())
                 , restaurantCsvVO.getLocationPhone()
-                , parseDouble(restaurantCsvVO.getLocationArea())
+                , Util.parseDouble(restaurantCsvVO.getLocationArea())
                 , restaurantCsvVO.getLocationZipCode()
                 , restaurantCsvVO.getLocationFullAddress()
                 , restaurantCsvVO.getStreetFullAddress()
                 , restaurantCsvVO.getStreetZipCode()
                 , restaurantCsvVO.getBusinessLocationName()
-                , parseDateTime(restaurantCsvVO.getLastModifiedDatetime())
+                , Util.parseDateTime(restaurantCsvVO.getLastModifiedDatetime())
                 , restaurantCsvVO.getDataRenewalType()
-                , parseDateTime(restaurantCsvVO.getDataRenewalDate())
+                , Util.parseDateTime(restaurantCsvVO.getDataRenewalDate())
                 , restaurantCsvVO.getBusinessTypeName()
-                , parseDouble(restaurantCsvVO.getCoordinateX())
-                , parseDouble(restaurantCsvVO.getCoordinateY())
+                , Util.parseDouble(restaurantCsvVO.getCoordinateX())
+                , Util.parseDouble(restaurantCsvVO.getCoordinateY())
                 , restaurantCsvVO.getSanitationBusinessTypeName()
-                , parseInt(restaurantCsvVO.getMaleWorkersCount())
-                , parseInt(restaurantCsvVO.getFemaleWorkersCount())
+                , Util.parseInt(restaurantCsvVO.getMaleWorkersCount())
+                , Util.parseInt(restaurantCsvVO.getFemaleWorkersCount())
                 , restaurantCsvVO.getBusinessNeighborhoodAreaName()
                 , restaurantCsvVO.getGradeTypeName()
                 , restaurantCsvVO.getWaterSupplyType()
-                , parseInt(restaurantCsvVO.getEmployeeTotalCount())
-                , parseInt(restaurantCsvVO.getHeadOfficeEmployeeCount())
-                , parseInt(restaurantCsvVO.getFactoryOfficeEmployeeCount())
-                , parseInt(restaurantCsvVO.getFactorySalesEmployeeCount())
-                , parseInt(restaurantCsvVO.getFactoryProduceEmployeeCount())
+                , Util.parseInt(restaurantCsvVO.getEmployeeTotalCount())
+                , Util.parseInt(restaurantCsvVO.getHeadOfficeEmployeeCount())
+                , Util.parseInt(restaurantCsvVO.getFactoryOfficeEmployeeCount())
+                , Util.parseInt(restaurantCsvVO.getFactorySalesEmployeeCount())
+                , Util.parseInt(restaurantCsvVO.getFactoryProduceEmployeeCount())
                 , restaurantCsvVO.getBuildingOwnershipType()
-                , parseInt(restaurantCsvVO.getGuaranteeAmount())
-                , parseInt(restaurantCsvVO.getMonthlyRentAmount())
+                , Util.parseInt(restaurantCsvVO.getGuaranteeAmount())
+                , Util.parseInt(restaurantCsvVO.getMonthlyRentAmount())
                 , restaurantCsvVO.getMultiUseEstablishmentYn()
-                , parseDouble(restaurantCsvVO.getFacilityTotalSize())
+                , Util.parseDouble(restaurantCsvVO.getFacilityTotalSize())
                 , restaurantCsvVO.getTraditionalEstablishmentDesignationNumber()
                 , restaurantCsvVO.getTraditionalEstablishmentMainFood()
                 , restaurantCsvVO.getHomepage());
     }
 
-    private static LocalDate parseDate(String date) {
-        return ObjectUtils.isEmpty(date) ? null : LocalDate.parse(date);
-    }
-
-    private static LocalDateTime parseDateTime(String dateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return ObjectUtils.isEmpty(dateTime) ? null : LocalDateTime.parse(dateTime, formatter);
-    }
-
-    private static Integer parseInt(String value) {
-        return ObjectUtils.isEmpty(value) ? 0 : Integer.parseInt(value);
-    }
-
-    private static Double parseDouble(String value) {
-        return ObjectUtils.isEmpty(value) ? 0 : Double.parseDouble(value);
-    }
 }

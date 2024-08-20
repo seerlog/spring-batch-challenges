@@ -2,6 +2,7 @@ package com.example.springbatchchallenges.job.utils;
 
 import com.example.springbatchchallenges.job.vo.RestaurantCsvVO;
 import com.example.springbatchchallenges.job.vo.RestaurantVO;
+import com.example.springbatchchallenges.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,18 +95,16 @@ public class Reader {
 
     private boolean isCorrectDateFormat(FieldSet fieldSet) {
         try {
-            // date
-            LocalDate licensingDate = LocalDate.parse(fieldSet.readString("licensingDate"));
-            LocalDate licensingCancelDate = LocalDate.parse(fieldSet.readString("licensingCancelDate"));
-            LocalDate closingDate = LocalDate.parse(fieldSet.readString("closingDate"));
-            LocalDate suspensionStartDate = LocalDate.parse(fieldSet.readString("suspensionStartDate"));
-            LocalDate suspensionEndDate = LocalDate.parse(fieldSet.readString("suspensionEndDate"));
-            LocalDate reopeningDate = LocalDate.parse(fieldSet.readString("reopeningDate"));
+            Util.parseDate(fieldSet.readString("licensingDate"));
+            Util.parseDate(fieldSet.readString("licensingCancelDate"));
+            Util.parseDate(fieldSet.readString("closingDate"));
+            Util.parseDate(fieldSet.readString("suspensionStartDate"));
+            Util.parseDate(fieldSet.readString("suspensionEndDate"));
+            Util.parseDate(fieldSet.readString("reopeningDate"));
 
-            // datetime
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime lastModifiedDatetime = LocalDateTime.parse(fieldSet.readString("lastModifiedDatetime"), formatter);
-            LocalDateTime dataRenewalDate = LocalDateTime.parse(fieldSet.readString("dataRenewalDate"), formatter);
+            Util.parseDateTime(fieldSet.readString("lastModifiedDatetime"));
+            Util.parseDateTime(fieldSet.readString("dataRenewalDate"));
+
             return true;
         } catch (Exception e) {
             return false;
