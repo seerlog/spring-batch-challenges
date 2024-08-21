@@ -1,4 +1,4 @@
-package com.example.springbatchchallenges.job.utils;
+package com.example.springbatchchallenges.job;
 
 import com.example.springbatchchallenges.job.vo.RestaurantCsvVO;
 import com.example.springbatchchallenges.job.vo.RestaurantVO;
@@ -15,15 +15,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 @Configuration
 @RequiredArgsConstructor
-public class Reader {
-    private final Logger logger = LoggerFactory.getLogger(Reader.class);
+public class RestaurantReader {
+    private final Logger logger = LoggerFactory.getLogger(RestaurantReader.class);
 
     @Bean
     public FlatFileItemReader<RestaurantVO> csvReader() throws Exception {
@@ -35,31 +32,11 @@ public class Reader {
         defaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
         defaultLineMapper.setFieldSetMapper((fieldSet -> {
             try {
-                // Check if the value contains double quotation mark
-                for(String value : fieldSet.getValues()) {
-                    if(checkContainDoubleQuotation(value)) {
-                        if(checkContainDoubleQuotationOddNumber(value)) {
-                            throw new RuntimeException("Double quotation mark is odd number");
-                        }
-                    }
-                }
-                // Check if the value contains invalid date
-                if(!isCorrectDateFormat(fieldSet)) {
-                    throw new RuntimeException("Invalid date format");
-                }
-
-                return RestaurantVO.builder()
-                        .restaurantCsvVO(RestaurantCsvVO.of(fieldSet))
-                        .hasError(false)
-                        .build();
+                hasDoubleQuotationOddNumber(fieldSet);
+                hasInvalidDate(fieldSet);
+                return RestaurantVO.of(RestaurantCsvVO.of(fieldSet), false, "");
             } catch (Exception e) {
-                return RestaurantVO.builder()
-                        .restaurantCsvVO(
-                                RestaurantCsvVO.builder()
-                                        .no(fieldSet.readString("no"))
-                                        .build())
-                        .hasError(true)
-                        .build();
+                return RestaurantVO.of(RestaurantCsvVO.of(fieldSet.readString("no")), true, e.getMessage());
             }
         }));
 
@@ -72,8 +49,17 @@ public class Reader {
                 .build();
 
         flatFileItemReader.afterPropertiesSet();
-
         return flatFileItemReader;
+    }
+
+    private void hasDoubleQuotationOddNumber(FieldSet fieldSet) {
+        for(String value : fieldSet.getValues()) {
+            if(checkContainDoubleQuotation(value)) {
+                if(checkContainDoubleQuotationOddNumber(value)) {
+                    throw new RuntimeException("Double quotation mark is odd number");
+                }
+            }
+        }
     }
 
     private boolean checkContainDoubleQuotation(String text) {
@@ -91,6 +77,12 @@ public class Reader {
             return true;
         }
         return false;
+    }
+
+    private void hasInvalidDate(FieldSet fieldSet) {
+        if(!isCorrectDateFormat(fieldSet)) {
+            throw new RuntimeException("Invalid date format");
+        }
     }
 
     private boolean isCorrectDateFormat(FieldSet fieldSet) {

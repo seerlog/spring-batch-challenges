@@ -73,6 +73,12 @@ public class RestaurantCsvVO {
         return result;
     }
 
+    public static RestaurantCsvVO of(String no) {
+        return RestaurantCsvVO.builder()
+                .no(no)
+                .build();
+    }
+
     public static RestaurantCsvVO of(FieldSet fieldSet) {
         return RestaurantCsvVO.builder()
                 .no(fieldSet.readString("no"))
