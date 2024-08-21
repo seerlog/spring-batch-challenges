@@ -20,7 +20,6 @@ import java.time.format.DateTimeFormatter;
 @Entity
 public class Restaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NO", nullable = false)
     private Long no;
 

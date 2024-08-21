@@ -13,7 +13,6 @@ import lombok.Setter;
 @Entity
 public class ErrorLog {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NO", nullable = false)
     private Long no;
 

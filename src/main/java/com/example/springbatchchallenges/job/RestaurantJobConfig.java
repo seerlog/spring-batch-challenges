@@ -13,7 +13,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @RequiredArgsConstructor
-public class RestaurantJob {
+public class RestaurantJobConfig {
     private final RestaurantReader restaurantReader;
     private final RestaurantWriter restaurantWriter;
     private static final int chunkSize = 1000;

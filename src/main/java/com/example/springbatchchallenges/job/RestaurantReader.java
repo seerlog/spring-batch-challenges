@@ -14,7 +14,9 @@ import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.ObjectUtils;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 @Configuration
@@ -36,7 +38,8 @@ public class RestaurantReader {
                 hasInvalidDate(fieldSet);
                 return RestaurantVO.of(RestaurantCsvVO.of(fieldSet), false, "");
             } catch (Exception e) {
-                return RestaurantVO.of(RestaurantCsvVO.of(fieldSet.readString("no")), true, e.getMessage());
+                String message = ObjectUtils.isEmpty(e.getMessage()) ? "Unknown" : e.getMessage();
+                return RestaurantVO.of(RestaurantCsvVO.of(fieldSet.readString("no")), true, message);
             }
         }));
 
