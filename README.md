@@ -15,9 +15,10 @@
 
 ### 2. 테이블 DDL 쿼리
 
-배치 프로그램에서 사용하는 MySQL 데이터베이스 테이블 생성 쿼리는 아래와 같습니다.
+배치 프로그램에서 사용하는 MySQL 데이터베이스명은 `NATIONAL_RESTAURANT_STANDARD`입니다.   
+사용하는 테이블은 `restaurant`와 `error_log`로 DDL 쿼리는 아래와 같습니다.
 
-- `restaurant` 테이블 DDL 쿼리
+- `restaurant`
 ```sql
 CREATE TABLE `restaurant` (
   `NO` bigint NOT NULL COMMENT '번호',
@@ -71,7 +72,7 @@ CREATE TABLE `restaurant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-- `error_log` 테이블 DDL 쿼리
+- `error_log`
 ```sql
 CREATE TABLE `error_log` (
   `NO` bigint NOT NULL,
