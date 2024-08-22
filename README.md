@@ -83,7 +83,7 @@ CREATE TABLE `error_log` (
 
 ### 3. 배치 프로그램 실행 방법
 
-data.csv 파일의 크기가 크기 때문에 GitHub에 업로드되지 않는 부분이 있었습니다.
+`data.csv` 파일의 크기가 매우 커서 GitHub에 업로드되지 않는 부분이 있었습니다.
 그래서 아래처럼 `resources` 폴더에 `data.csv` 파일을 추가하신 후 배치 프로그램을 실행시켜 주시면 됩니다.
 
 ![resources](https://private-user-images.githubusercontent.com/152579397/360402774-baab4b46-d420-4aae-80a5-7d63775dfd1f.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjQzMjQ2MzIsIm5iZiI6MTcyNDMyNDMzMiwicGF0aCI6Ii8xNTI1NzkzOTcvMzYwNDAyNzc0LWJhYWI0YjQ2LWQ0MjAtNGFhZS04MGE1LTdkNjM3NzVkZmQxZi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODIyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgyMlQxMDU4NTJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01ZDEwMmM2OTE3NmE1ZWQzZWEzNDFkMTBjMzdlMGNlNWVhMWEyYzE1ZTM4YjNjNzc1YjMxMmQyMjY3NTE5ZTEyJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.ulzf580nXnlYj79J8mW5B-gl3UPmaOpM_vg4gXX1hsk)
