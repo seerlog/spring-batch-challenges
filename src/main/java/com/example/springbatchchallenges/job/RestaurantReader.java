@@ -26,6 +26,19 @@ public class RestaurantReader {
 
     @Bean
     public FlatFileItemReader<RestaurantVO> csvReader() throws Exception {
+        FlatFileItemReader<RestaurantVO> flatFileItemReader = new FlatFileItemReaderBuilder<RestaurantVO>()
+                .name("csvFileItemReader")
+                .encoding("EUC-KR")
+                .resource(new ClassPathResource("data.csv"))
+                .linesToSkip(1)
+                .lineMapper(createLineMapper())
+                .build();
+
+        flatFileItemReader.afterPropertiesSet();
+        return flatFileItemReader;
+    }
+
+    private DefaultLineMapper<RestaurantVO> createLineMapper() {
         DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
         delimitedLineTokenizer.setNames(RestaurantCsvVO.getFieldNames().toArray(String[]::new));
         delimitedLineTokenizer.setStrict(false);
@@ -42,17 +55,7 @@ public class RestaurantReader {
                 return RestaurantVO.of(RestaurantCsvVO.of(fieldSet.readString("no")), true, message);
             }
         }));
-
-        FlatFileItemReader<RestaurantVO> flatFileItemReader = new FlatFileItemReaderBuilder<RestaurantVO>()
-                .name("csvFileItemReader")
-                .encoding("EUC-KR")
-                .resource(new ClassPathResource("data.csv"))
-                .linesToSkip(1)
-                .lineMapper(defaultLineMapper)
-                .build();
-
-        flatFileItemReader.afterPropertiesSet();
-        return flatFileItemReader;
+        return defaultLineMapper;
     }
 
     private void hasDoubleQuotationOddNumber(FieldSet fieldSet) {
